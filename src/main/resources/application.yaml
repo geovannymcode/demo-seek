@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: demo-seek
+springdoc:
+  api-docs:
+    enabled: 'true'
+  swagger-ui:
+    enabled: 'true'
+  packages-to-scan: com.geovannycode.infraestructure.Controller
