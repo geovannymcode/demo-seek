@@ -24,21 +24,26 @@ public class CandidateServiceImpl implements CandidateService {
 
     @Override
     public List<CandidateResponse> getCandidates() {
-        return candidateRepository.findAll().stream()
+        return candidateRepository.findByActiveTrue().stream()
                 .map(CandidateMapper::toResponse)
                 .collect(Collectors.toList());
     }
 
     @Override
     public CandidateResponse getCandidateById(Long id) {
-        Candidate candidate =
-                this.candidateRepository.findById(id).orElseThrow(() -> CandidateNotFoundException.forID(id));
+        Candidate candidate = candidateRepository.findByIdAndActiveTrue(id)
+                .orElseThrow(() -> CandidateNotFoundException.forID(id));
         return CandidateMapper.toResponse(candidate);
     }
 
     @Override
     public CandidateResponse createCandidate(CandidateRequest candidateRequest) {
-        return CandidateMapper.toResponse(candidateRepository.save(CandidateMapper.toCandidate(candidateRequest)));
+        Candidate candidate = CandidateMapper.toCandidate(candidateRequest);
+        candidate.setCreatedAt(LocalDate.now());
+        candidate.setUpdatedAt(LocalDate.now());
+        candidate.setActive(true);
+        Candidate savedCandidate = candidateRepository.save(candidate);
+        return CandidateMapper.toResponse(savedCandidate);
     }
 
     @Override

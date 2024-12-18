@@ -30,13 +30,13 @@ public class Candidate {
     private BigDecimal expectedSalary;
 
     @Column(name = "created_at", updatable = false)
-    private LocalDate createdAt;
+    private LocalDate createdAt = LocalDate.now();
 
     @Column(name = "active")
-    private Boolean active;
+    private Boolean active = true;
 
     @Column(name = "updated_at")
-    private LocalDate updatedAt;
+    private LocalDate updatedAt = LocalDate.now();
 
     @Column(name = "type_of_contract", length = 50)
     private String typeOfContract;
@@ -49,6 +49,9 @@ public class Candidate {
         this.gender = gender;
         this.expectedSalary = expectedSalary;
         this.typeOfContract = typeOfContract;
+        this.createdAt = LocalDate.now();
+        this.updatedAt = LocalDate.now();
+        this.active = true;
     }
 
     public Candidate(

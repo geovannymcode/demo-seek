@@ -7,3 +7,13 @@ springdoc:
   swagger-ui:
     enabled: 'true'
   packages-to-scan: com.geovannycode.infraestructure.Controller
+jwt:
+  secret: chLhMF9w3mwDutysbQxsX8x4CGwZef4mayTGSmbAG2BUsXbYFKvXrVfnPCa62PJxp9TuHxx4PQAS2yGUTBAPy3Dy53j8Uj2wb2AQ3nK8VLg7tUx9HCzHATEp
+  expiration: '2592000'
+  user: user
+  pass: pass
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
