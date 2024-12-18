@@ -31,8 +31,8 @@ public class CandidateServiceImpl implements CandidateService {
 
     @Override
     public CandidateResponse getCandidateById(Long id) {
-        Candidate candidate = candidateRepository.findByIdAndActiveTrue(id)
-                .orElseThrow(() -> CandidateNotFoundException.forID(id));
+        Candidate candidate =
+                candidateRepository.findByIdAndActiveTrue(id).orElseThrow(() -> CandidateNotFoundException.forID(id));
         return CandidateMapper.toResponse(candidate);
     }
 

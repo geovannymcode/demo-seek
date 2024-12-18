@@ -1,23 +1,22 @@
 package com.geovannycode.infraestructure.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 import com.geovannycode.application.service.CandidateService;
 import com.geovannycode.infraestructure.Controller.impl.CandidateControllerImpl;
 import com.geovannycode.infraestructure.request.CandidateRequest;
 import com.geovannycode.infraestructure.response.CandidateResponse;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.ResponseEntity;
-
-import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 public class CandidateControllerImplTest {
     @Mock
@@ -33,8 +32,10 @@ public class CandidateControllerImplTest {
 
     @Test
     public void testGetCandidates() {
-        CandidateResponse candidate1 = new CandidateResponse("Geovanny Mendoza", "geovannymendoza@example.com", "male","100", "Full-Time");
-        CandidateResponse candidate2 = new CandidateResponse("Elena Aguirre", "elenaaguirre@example.com", "female","10000", "Part-Time");
+        CandidateResponse candidate1 =
+                new CandidateResponse("Geovanny Mendoza", "geovannymendoza@example.com", "male", "100", "Full-Time");
+        CandidateResponse candidate2 =
+                new CandidateResponse("Elena Aguirre", "elenaaguirre@example.com", "female", "10000", "Part-Time");
 
         when(candidateService.getCandidates()).thenReturn(Arrays.asList(candidate1, candidate2));
 
@@ -50,7 +51,8 @@ public class CandidateControllerImplTest {
     @Test
     public void testGetCandidate() {
 
-        CandidateResponse candidateResponse = new CandidateResponse("Geovanny Mendoza", "geovannymendoza@example.com", "Male", "10000", "Full-Time");
+        CandidateResponse candidateResponse =
+                new CandidateResponse("Geovanny Mendoza", "geovannymendoza@example.com", "Male", "10000", "Full-Time");
         when(candidateService.getCandidateById(1L)).thenReturn(candidateResponse);
 
         ResponseEntity<CandidateResponse> response = candidateController.getCandidateById(1L);
@@ -62,8 +64,10 @@ public class CandidateControllerImplTest {
 
     @Test
     public void testCreateCandidate() {
-        CandidateRequest candidateRequest = new CandidateRequest("Geovanny Mendoza", "geovannymendoza@example.com", "Male", "1000",  "Full-Time");
-        CandidateResponse candidateResponse = new CandidateResponse("Geovanny Mendoza", "geovannymendoza@example.com", "Male","10000","Full-Time");
+        CandidateRequest candidateRequest =
+                new CandidateRequest("Geovanny Mendoza", "geovannymendoza@example.com", "Male", "1000", "Full-Time");
+        CandidateResponse candidateResponse =
+                new CandidateResponse("Geovanny Mendoza", "geovannymendoza@example.com", "Male", "10000", "Full-Time");
 
         when(candidateService.createCandidate(candidateRequest)).thenReturn(candidateResponse);
 
@@ -75,8 +79,10 @@ public class CandidateControllerImplTest {
 
     @Test
     public void testUpdateCandidate() {
-        CandidateRequest candidateRequest = new CandidateRequest("Geovanny Mendoza", "geovannymendoza@example.com", "Male", "1000",  "Full-Time");
-        CandidateResponse candidateResponse = new CandidateResponse("Geovanny Mendoza", "geovannymendoza@example.com", "Male","10000","Full-Time");
+        CandidateRequest candidateRequest =
+                new CandidateRequest("Geovanny Mendoza", "geovannymendoza@example.com", "Male", "1000", "Full-Time");
+        CandidateResponse candidateResponse =
+                new CandidateResponse("Geovanny Mendoza", "geovannymendoza@example.com", "Male", "10000", "Full-Time");
         when(candidateService.updateCandidate(candidateRequest, 1L)).thenReturn(candidateResponse);
         ResponseEntity<CandidateResponse> response = candidateController.updateCandidate(candidateRequest, 1L);
 

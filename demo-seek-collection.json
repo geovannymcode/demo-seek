@@ -1,0 +1,239 @@
+{
+	"info": {
+		"_postman_id": "5a976a06-9f42-44d2-800b-da9250ab3186",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2556342"
+	},
+	"item": [
+		{
+			"name": "seek",
+			"item": [
+				{
+					"name": "Delete Candidate",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzZWVraWQiLCJzdWIiOiJ1c2VyIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTczNDQ4ODU5MywiZXhwIjoxNzM0NDkyMTkzfQ.As-r9Qoill3ruUTbbNuBZ7WMn11yVmIkbxeLX7MCnxe9DH9g8eRxnwYusgRkwbUSbxhyA8vSKLvEx6_3KHJtkA"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/10.2.0"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/candidate/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"candidate",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Candidate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzZWVraWQiLCJzdWIiOiJ1c2VyIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTczNDQ5MDAxMCwiZXhwIjoxNzM0NDkzNjEwfQ.rCffMIX8p45e3QumPnaBeHigEyAW-VotW91q_mBbOr7uM2yw_ked3hTPt9tVqXMLzh8Ab4LAvKYPU735NMBPcA"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "JSESSIONID=49EF29F0542786A9327ED43C552EC39A"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/10.2.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\t{\n\t\t\"name\": \"Maricel Aguirre\",\n\t\t\"email\": \"maricela.aguirre@example.com\",\n\t\t\"gender\": \"Female\",\n\t\t\"expectedSalary\": \"35000.00\",\n\t\t\"typeOfContract\": \"Part-Time\"\n\t}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/candidate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"candidate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Candidate",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzZWVraWQiLCJzdWIiOiJ1c2VyIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTczNDQ4ODU5MywiZXhwIjoxNzM0NDkyMTkzfQ.As-r9Qoill3ruUTbbNuBZ7WMn11yVmIkbxeLX7MCnxe9DH9g8eRxnwYusgRkwbUSbxhyA8vSKLvEx6_3KHJtkA"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "JSESSIONID=49EF29F0542786A9327ED43C552EC39A"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/10.2.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\t{\n\t\t\"name\": \"Claudia Mendoza\",\n\t\t\"email\": \"claudia.mendoza@example.com\",\n\t\t\"gender\": \"Female\",\n\t\t\"expectedSalary\": \"45000.00\",\n\t\t\"typeOfContract\": \"Part-Time\"\n\t}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/candidate/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"candidate",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authentication",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/10.2.0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"user\",\n\t\"password\":\"pass\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Candidate",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzZWVraWQiLCJzdWIiOiJ1c2VyIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTczNDQ4ODU5MywiZXhwIjoxNzM0NDkyMTkzfQ.As-r9Qoill3ruUTbbNuBZ7WMn11yVmIkbxeLX7MCnxe9DH9g8eRxnwYusgRkwbUSbxhyA8vSKLvEx6_3KHJtkA"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/10.2.0"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/candidate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"candidate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Candidate By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzZWVraWQiLCJzdWIiOiJ1c2VyIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTczNDQ4ODU5MywiZXhwIjoxNzM0NDkyMTkzfQ.As-r9Qoill3ruUTbbNuBZ7WMn11yVmIkbxeLX7MCnxe9DH9g8eRxnwYusgRkwbUSbxhyA8vSKLvEx6_3KHJtkA"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/10.2.0"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/candidate/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"candidate",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

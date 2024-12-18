@@ -1,5 +1,7 @@
 package com.geovannycode.infraestructure.utils;
 
+import static com.geovannycode.infraestructure.utils.SecurityUtil.getSigningKey;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -9,17 +11,15 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
-import static com.geovannycode.infraestructure.utils.SecurityUtil.getSigningKey;
 
 @Component
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
@@ -31,9 +31,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     private String secret;
 
     private Claims setSigningKey(HttpServletRequest request) {
-        String jwtToken = request.
-                getHeader(HEADER_AUTHORIZACION_KEY).
-                replace(TOKEN_BEARER_PREFIX, "");
+        String jwtToken = request.getHeader(HEADER_AUTHORIZACION_KEY).replace(TOKEN_BEARER_PREFIX, "");
 
         return Jwts.parserBuilder()
                 .setSigningKey(getSigningKey(secret))
@@ -45,11 +43,10 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     private void setAuthentication(Claims claims) {
         List<String> authorities = (List<String>) claims.get("authorities");
 
-        UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(claims.getSubject(),
+        UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
+                claims.getSubject(),
                 null,
-                authorities.stream()
-                        .map(SimpleGrantedAuthority::new)
-                        .collect(Collectors.toList()));
+                authorities.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
 
         SecurityContextHolder.getContext().setAuthentication(auth);
     }
@@ -60,7 +57,8 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException, IOException {
         try {
             if (isJWTValid(request, response)) {
                 Claims claims = setSigningKey(request);
@@ -78,5 +76,4 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
             response.sendError(HttpServletResponse.SC_FORBIDDEN, e.getMessage());
         }
     }
-
 }
